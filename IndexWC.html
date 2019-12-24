@@ -1,0 +1,94 @@
+<!--DOCTYPE html-->
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Живой поиск</title>
+
+	<style>
+body {font: 11px Tahoma, "Trebuchet MS", Tahoma, sans-serif; line-height: 1.6em; color: #222; }
+</style>
+</head>
+<body>
+    <textarea id="textarea"></textarea>
+
+
+
+<form action="search" method="post" name="form" onsubmit="return false;">
+	<p>
+		Живой поиск:<br> 
+        <input name="search" type="text" id="search">
+        <div id="found"></div>
+	</p>
+</form>
+
+<div id="resSearch">Начните вводить запрос</div>
+ <script>
+	 
+function myFunction() {
+    var search_string = document.getElementById("search");
+//    search_string.value = search_string.value.toLowerCase();
+  // console.log(search_string.value)
+    // console.log(document.getElementById("search").value);
+   fetch('https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json')
+  
+   .then(function(response) {
+     let data = response.json()
+     //console.log(data)
+    return data;
+  })
+  .then(function(data) {
+  /////////////////////////
+
+   console.log(data)
+  let textarea = document.getElementById('search')
+
+  let found = document.getElementById('found')
+  let i =0
+  while ( i < 10) {
+ let filter = (fields, value) => data.filter(item => fields.some(field => item[field].includes(value)))
+ i++
+ 
+ 
+ 
+ document.getElementById("found").innerHTML = JSON.stringify(filter(['country'], search_string.value))}
+ 
+//   textarea.addEventListener('keyup', (e) => found.innerText = JSON.stringify(filter(['country'], e.target.value)))
+  ///////////////////////
+/////////////////////  
+ 
+// let arr = JSON.parse(json)
+
+/////////////
+
+// let matches= []
+//     for (i in items){
+//  for (j in items[i].country){
+//     // if (items[j].country.indexOf(search_string.value))
+//     // {
+//     //        matches.push(items[j].country)
+//     // }
+//     matches.push(items[i].country)
+// }
+
+// }
+// console.log(matches)
+////////////////////////////////////
+  })
+
+
+.catch(error => console.error(error))
+}
+
+
+document.getElementById("search").onkeyup = function() {myFunction()};
+
+
+
+
+
+
+ </script>
+</body>
+</html
