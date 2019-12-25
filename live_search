@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Живой поиск</title>
+    <style>
+      body {
+        font: 11px Tahoma, "Trebuchet MS", Tahoma, sans-serif;
+        line-height: 1.6em; 
+        color: #222;
+      }
+    </style>
+   <!-- // <script src="in.js"></script> -->
+  </head>
+  <body>
+    <textarea id="textarea"></textarea>
+    <form action="search" method="post" name="form" onsubmit="return false;">
+        <p>
+            Живой поиск:<br> 
+            <input name="search" type="text" id="search">
+            <div id="res"></div>
+        </p>
+    </form>
+    
+    <div id="resSearch">Начните вводить запрос</div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+
+    <script>
+    let data; // Массив с данными
+let found = []; // Массив результатов
+let search = document.getElementById('search'); // Строка поиска
+let res = document.getElementById('found')
+let url = 'https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json'
+let str
+// Получение массива и запись в локальную переменную
+//   $.getJSON('https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json', function(res) {
+
+//    // console.log(JSON.stringify(res));
+// });
+//console.log(JSON.stringify(data))
+function Get(url) {
+  var Httpreq = new XMLHttpRequest(); // a new request
+  Httpreq.open("GET", url, false);
+  Httpreq.send(null);
+  return Httpreq.responseText;
+}
+
+data = JSON.parse(Get(url))
+//console.log(data)
+// let answer = Array.isArray(data)
+// alert(answer)
+
+// console.log(data);
+
+
+
+function makeSearchInData(data) {
+  let variants = [];
+  // ...
+  // let filter = (fields, value) => data.filter(item => fields.some(field => item[field].includes(value)))
+  // variants.push(JSON.stringify((filter(['country'], str))))
+  // console.log(variants)
+  // return variants;
+  //     var results = [];
+  // var searchField = "name";
+  // var searchVal = "my Name";
+  // for (var i=0 ; i < obj.list.length ; i++)
+  // {
+  //     if (obj.list[i][searchField] == searchVal) {
+  //         results.push(obj.list[i]);
+  //     }
+  // }
+
+
+  for (var key in data) {
+    console.log(key, ':', data[key]);
+  }
+
+}
+// Вывод найденных совпадеий 
+function outputMatchesFoundedInData() {
+  // Мб счетчик по 
+}
+
+function readLine() {
+  search.onkeyup = function () {
+    console.log(search.value)
+    str = search.value
+    return str
+  }
+}
+
+makeSearchInData(data)
+    </script>
+  </body>
+</html>
