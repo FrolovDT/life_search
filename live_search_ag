@@ -1,4 +1,46 @@
-let data; // Массив с данными
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Живой поиск</title>
+    <style>
+      body {
+        font: 11px Tahoma, "Trebuchet MS", Tahoma, sans-serif;
+        line-height: 1.6em; 
+        color: #222;
+      }
+    </style>
+   <!-- // <script src="in.js"></script> -->
+  </head>
+  <body>
+    <textarea id="textarea"></textarea>
+    <form action="search" method="post" name="form" onsubmit="return false;">
+        <p>
+            Живой поиск:<br> 
+            <!-- <input name="search" type="text" id="search" oninput ="console.log(readLine())" > -->
+            <!-- <input name="search" type="text" id="search" oninput ="console.log(makeSearchInData(data))" > -->
+            <input name="search" type="text" id="search" oninput ="outputMatchesFoundedInData()" >
+            <div id="res"></div>
+     
+
+        </p>
+        
+    </form>
+    
+    <div id="resSearch">Начните вводить запрос</div>
+
+    
+
+
+
+
+ <p id="log-div"></p>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+
+    <script>
+ let data; // Массив с данными
 let found = []; // Массив результатов
 let search = document.getElementById('search'); // Строка поиска
 let res = document.getElementById('found')
@@ -90,3 +132,6 @@ function getByIndex(number) {
 
 // console.log(readLine())
 makeSearchInData(data)
+    </script>
+  </body>
+</html>
