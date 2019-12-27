@@ -1,0 +1,92 @@
+let data; // Массив с данными
+let found = []; // Массив результатов
+let search = document.getElementById('search'); // Строка поиска
+let res = document.getElementById('found')
+let url = 'https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json'
+let str
+
+
+function get(url) {
+  var Httpreq = new XMLHttpRequest(); // a new request
+  Httpreq.open("GET", url, false);
+  Httpreq.send(null);
+  return JSON.parse(Httpreq.responseText);
+}
+// alert(typeof(get(url)))
+
+data = get(url)
+// alert(data)
+function readLine() {
+  var input = document.getElementById("search");
+  var div = document.getElementById("res");
+  if (div != null && input != null)
+    var x = input.value.toLowerCase();
+  return x
+}
+
+
+
+// function makeSearchInData(data) {
+//   var variants = []
+//   variants = data.filter(item => item.country.indexOf(readLine()) > -1);
+
+//   return variants
+
+// }
+function makeSearchInData(data) {
+  var variants = []
+  variants = data.filter(item => item.country.indexOf(readLine()) > -1);
+  variants = data.filter(item => {
+    let country = item.country.toLowerCase()
+    return country.indexOf(readLine()) > -1
+  })
+
+
+  return variants
+
+}
+
+function outputMatchesFoundedInData(variants) {
+
+  variants = makeSearchInData(data)
+  let lgVar = variants.length
+  if (lgVar <= 10 && lgVar != 0) {
+
+    text = "<ul>";
+    for (i = 0; i < lgVar; i++) {
+      text += "<li>" + variants[i].country + "</li>";
+    }
+    document.getElementById("res").innerHTML = text;
+  } else if (lgVar > 10) {
+
+    text = "<ul>";
+    for (i = 0; i < 10; i++) {
+      text += "<li>" + variants[i].country + "</li>";
+    }
+    document.getElementById("res").innerHTML = text;
+  }
+
+
+}
+
+
+
+function getByIndex(number) {
+  for (let key in data) {
+    if (number == key) {
+      return data[key].country
+    } else if (number != key) {
+      let r = "не найдено"
+      return r
+    }
+
+  }
+
+
+}
+
+
+// console.log(typeof  (getByIndex(0)))
+
+// console.log(readLine())
+makeSearchInData(data)
